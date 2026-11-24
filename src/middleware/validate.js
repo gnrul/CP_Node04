@@ -4,7 +4,7 @@ const postValidationSchema = Joi.object({
   title: Joi.string().required(),
   content: Joi.string().allow('', null),
   published: Joi.boolean(),
-  authorId: Joi.number().integer().required(),
+  authorId: Joi.number().integer().optional(),
   tags: Joi.array().items(Joi.string()).optional()
 });
 

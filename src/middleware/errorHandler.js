@@ -1,9 +1,13 @@
 const errorHandler = (err, req, res, next) => {
-  console.error(err.stack); 
-  const statusCode = res.statusCode && res.statusCode >= 400 ? res.statusCode : 500;
-  res.status(statusCode).json({
-    error: err.message || 'Внутренняя ошибка сервера'
-  });
+  const status = err.status || 500;
+  const body = { error: err.message || 'Ошибка сервера' };
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.error(err.stack);
+    body.stack = err.stack;
+  }
+
+  res.status(status).json(body);
 };
 
 module.exports = errorHandler;

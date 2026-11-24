@@ -10,6 +10,7 @@ model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String
+  password  String @default("")
   role      String   @default("USER")
   createdAt DateTime @default(now())
   posts     Post[]
