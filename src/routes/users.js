@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const prisma = require('../config/index');
 
-
 router.get('/', async (req, res) => {
   let { page = 1, limit = 10 } = req.query;
   page = parseInt(page);
@@ -23,12 +22,12 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const post = await prisma.post.findUnique({ where: { id: parseInt(req.params.id) } });
-    if (!post) {
+    const user = await prisma.user.findUnique({ where: { id: parseInt(req.params.id) } });
+    if (!user) {
       res.status(404);
-      throw new Error('Пост не найден');
+      throw new Error('Пользователь не найден');
     }
-    res.json(post);
+    res.json(user);
   } catch (err) {
     next(err);
   }

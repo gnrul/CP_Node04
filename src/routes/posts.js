@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
 
   let where = {};
   if (search) {
-    where.title = { contains: search }; 
+    where.title = { contains: search };
   }
   if (published !== undefined) {
     where.published = published === 'true';

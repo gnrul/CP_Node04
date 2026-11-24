@@ -1,15 +1,16 @@
-datasource db {
-  provider = "sqlite"
-  url = env("DATABASE_URL")
-}
 generator client {
   provider = "prisma-client-js"
 }
+
+datasource db {
+  provider = "sqlite"
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   name      String
-  role      String   @default("USER") 
+  role      String   @default("USER")
   createdAt DateTime @default(now())
   posts     Post[]
 }
